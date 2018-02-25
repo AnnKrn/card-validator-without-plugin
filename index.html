@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="main.css">
+    <title>Formulario TDC</title>
+</head>
+<body>
+      <!-- formulario materialize -->
+      <div class="row">
+        <form id='form_tdc' class="col s6">
+          <div class="row">
+            <div class="input-field col s12">
+              <label for="cn" data-error="wrong" data-success="right"></label>
+              <input placeholder="Número de tarjeta de crédito" id="cn" name="cn" type='number' class="validate" maxlength = "16" required="" aria-required="true"/>              
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <label for="exp" ></label>
+              <input placeholder="Fecha de vencimiento" id="exp" name="exp" type='number' class="validate" maxlength = "4" required="" aria-required="true"/>
+            </div>
+            <div class="input-field col s6">
+              <label for="cvv"></label>
+              <input placeholder="CVV" id="cvv" name="cvv" type='number' class="validate" maxlength = "3" required="" aria-required="true"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+                <label for="name"></label>
+                <input placeholder="Nombre completo" id="name" name="name" type='text' class="validate" maxlength = "30" required="" aria-required="true"/>
+            </div>
+          </div>
+          <button class="btn waves-effect waves-light" type="submit" name="action">Pagar
+            <i class="material-icons right">send</i>
+          </button>
+        </form>
+      </div>
+
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

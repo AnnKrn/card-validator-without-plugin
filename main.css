@@ -1,0 +1,14 @@
+/* #form_tdc div div input:invalid {
+    border-bottom: 1px solid red;
+}
+
+#form_tdc div div input:valid {
+    border-bottom: 1px solid green;
+} */
+.invalid {
+    border-bottom: 1px solid red;
+}
+
+.valid {
+    border-bottom: 1px solid green;
+}
