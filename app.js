@@ -3,23 +3,18 @@ const form = document.getElementById("form_tdc");
 form.addEventListener("submit", e => {
   e.preventDefault();
   if (validateCardDetails(form)) {
+    alert('Sus pago esta en proceso')
     console.log("datos válido... enviar...");
-  } else {
+  } else {   
     console.log("datos inválidos");
   }
 });
-// funciones de validacion. Segundo punto
-// const noEmpy = toValid => {
-//   if (toVaid !== '') {
-//     return true
-//   }
-// }
 
 // funcion para validar Numero de TDC
 const validateTdcNumber = tdcNumber => {
   // console.log(typeof tdcNumber)
   const numberCard = tdcNumber.split('');
-  console.log(numberCard);
+  // console.log(numberCard);
   
   // procesar numeros de TDC
   const processNumbers = numberCard.map((element, index) => {
@@ -35,14 +30,14 @@ const validateTdcNumber = tdcNumber => {
         let stringElementGraterThanTen = elementInEvenIndex.toString()
         // console.log(stringElementGraterThanTen)
         sumElementGraterThanTen = parseInt(stringElementGraterThanTen[0]) + parseInt(stringElementGraterThanTen[1]);
-        console.log(sumElementGraterThanTen)
+        // console.log(sumElementGraterThanTen)
         return sumElementGraterThanTen
       };
-      console.log(elementInEvenIndex)
+      // console.log(elementInEvenIndex)
       return elementInEvenIndex
     } else {
       // regresa los números que no estan en indice par
-      console.log(element)
+      // console.log(element)
       return parseInt(element)
     }
   });
@@ -50,13 +45,14 @@ const validateTdcNumber = tdcNumber => {
   // trabajar con numeros procesados
   // suma los 16 digitos
   const sumProcessedNumbers = processNumbers.reduce((element, initialize) => element + initialize);
-  console.log(sumProcessedNumbers)
+  // console.log(sumProcessedNumbers)
 
   // modulo de 10 = 0
   if (sumProcessedNumbers % 10 === 0) {
-    return document.getElementById('cn').classList.add('valid')
+    document.getElementById('cn').classList.add('valid')
+    return true
   } else {
-    return document.getElementById('cn').classList.add('invalid')
+    document.getElementById('cn').classList.add('invalid')
   }
 }
 
@@ -76,15 +72,15 @@ const validateDate = expiredDate => {
   year.push(arrayexpiredDate[2], arrayexpiredDate[3]);
   const numberYear = parseInt(year.join(''))
 
-  // // obtener fecha actual
-  // const thisYear = new Date().getFullYear()
-  // // sale array vacio
-  // const arrayThisYear = Array.from(thisYear)
+  // obtener fecha actual
+  const thisYear = new Date().getFullYear().toString()
+  // sale array vacio
+  const arrayThisYear = Array.from(thisYear)
   // console.log(typeof thisYear)
 
-  // const twoDigitYear = []
-  // twoDigitYear.push(arrayThisYear[3]);
-  // twoDigitYear.push(arrayThisYear[2]);
+  const twoDigitYear = []
+  twoDigitYear.push(arrayThisYear[3]);
+  twoDigitYear.push(arrayThisYear[2]);
 
   // console.log(twoDigitYear)
   
@@ -96,14 +92,16 @@ const validateDate = expiredDate => {
     document.getElementById('exp').classList.add('invalid')
 
   }
+  return true
 };
 
 // funcion para validar CVV
 const validateCvv = cvv => {
   // console.log(cvv)
   if(cvv >= 100 && cvv <= 999 && typeof cvv == 'number') {
-    document.getElementById('cvv').classList.add('valid')
     // console.log('cumple cvv')
+    document.getElementById('cvv').classList.add('valid')
+    return true
   } else {
     document.getElementById('cvv').classList.add('invalid')
   }
@@ -111,8 +109,9 @@ const validateCvv = cvv => {
 
 // funcion para validar nombre 
 const validateName = name => {
-  if (name !== '') {
+  if (name !== '' ) {
     document.getElementById('name').classList.add('valid')
+    return true
   } 
   else {
     document.getElementById('name').classList.add('invalid')
@@ -133,9 +132,9 @@ const validateCardDetails = form => {
   // funciones de 
 
   // funciones de validacion
-  validateTdcNumber(tdcNumber)
-  validateDate(expiredDate)
-  validateCvv(cvv)
-  validateName(name)  
+  if (validateTdcNumber(tdcNumber) && validateDate(expiredDate) && validateCvv(cvv) && validateName(name)) {
+    // console.log('si')
+    return true
+  }
 }
 // validateCardDetails()
