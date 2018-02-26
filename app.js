@@ -12,12 +12,13 @@ form.addEventListener("submit", e => {
 
 // funcion para validar Numero de TDC
 const validateTdcNumber = tdcNumber => {
-  // console.log(typeof tdcNumber)
+  console.log(typeof tdcNumber)
   const numberCard = tdcNumber.split('');
   // console.log(numberCard);
   
   // procesar numeros de TDC
   const processNumbers = numberCard.map((element, index) => {
+    // console.log(element)
     // obtener los digitos de la tarjeta en index par para procesarlos 
     if(index % 2 == 0) {
       // multiplicarlos por 2
@@ -45,7 +46,7 @@ const validateTdcNumber = tdcNumber => {
   // trabajar con numeros procesados
   // suma los 16 digitos
   const sumProcessedNumbers = processNumbers.reduce((element, initialize) => element + initialize);
-  // console.log(sumProcessedNumbers)
+  console.log(sumProcessedNumbers)
 
   // modulo de 10 = 0
   if (sumProcessedNumbers % 10 === 0) {
@@ -72,17 +73,17 @@ const validateDate = expiredDate => {
   year.push(arrayexpiredDate[2], arrayexpiredDate[3]);
   const numberYear = parseInt(year.join(''))
 
-  // obtener fecha actual
-  const thisYear = new Date().getFullYear().toString()
-  // sale array vacio
-  const arrayThisYear = Array.from(thisYear)
-  // console.log(typeof thisYear)
+  // // obtener fecha actual
+  // const thisYear = new Date().getFullYear().toString()
+  // // sale array vacio
+  // const arrayThisYear = Array.from(thisYear)
+  // // console.log(typeof thisYear)
 
-  const twoDigitYear = []
-  twoDigitYear.push(arrayThisYear[3]);
-  twoDigitYear.push(arrayThisYear[2]);
+  // const twoDigitYear = []
+  // twoDigitYear.push(arrayThisYear[3]);
+  // twoDigitYear.push(arrayThisYear[2]);
 
-  // console.log(twoDigitYear)
+  // // console.log(twoDigitYear)
   
   if(numberMonth >= 01 && numberMonth <= 12 && numberYear >= 18 || numberYear == 99) {
     // console.log('si mes y año')
@@ -125,14 +126,15 @@ const validateCardDetails = form => {
 
   // variables para
   const tdcNumber = formArray[0].value
-  const expiredDate = formArray[1].value
-  const cvv = parseInt(formArray[2].value)
-  const name = formArray[3].value
+  console.log(tdcNumber)
+  // const expiredDate = formArray[1].value
+  // const cvv = parseInt(formArray[2].value)
+  // const name = formArray[3].value
   
   // funciones de 
 
   // funciones de validacion
-  if (validateTdcNumber(tdcNumber) && validateDate(expiredDate) && validateCvv(cvv) && validateName(name)) {
+  if (validateTdcNumber(tdcNumber) /*&& validateDate(expiredDate) && validateCvv(cvv) && validateName(name)*/) {
     // console.log('si')
     return true
   }
