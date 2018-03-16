@@ -2,17 +2,13 @@ const form = document.getElementById("form_tdc");
 
 form.addEventListener("submit", e => {
   e.preventDefault();
-  if (validateCardDetails(form)) {
-    alert('Sus pago esta en proceso')
-    console.log("datos válido... enviar...");
-  } else {   
-    console.log("datos inválidos");
-  }
+  validateCardDetails(form)
+
 });
 
 // funcion para validar Numero de TDC
 const validateTdcNumber = tdcNumber => {
-  console.log(typeof tdcNumber)
+  // console.log(typeof tdcNumber)
   const numberCard = tdcNumber.split('');
   // console.log(numberCard);
   
@@ -54,6 +50,7 @@ const validateTdcNumber = tdcNumber => {
     return true
   } else {
     document.getElementById('cn').classList.add('invalid')
+    return false
   }
 }
 
@@ -70,7 +67,7 @@ const validateDate = expiredDate => {
   const numberMonth = parseInt(month.join(''))
   // console.log(numberMonth)
   const year = []
-  year.push(arrayexpiredDate[2], arrayexpiredDate[3]);
+  year.push(arrayexpiredDate[3], arrayexpiredDate[4]);
   const numberYear = parseInt(year.join(''))
 
   // // obtener fecha actual
@@ -91,20 +88,20 @@ const validateDate = expiredDate => {
     return true
   } else {
     document.getElementById('exp').classList.add('invalid')
-
+    return false
   }
-  return true
 };
 
 // funcion para validar CVV
 const validateCvv = cvv => {
   // console.log(cvv)
-  if(cvv >= 100 && cvv <= 999 && typeof cvv == 'number') {
+  if(cvv >= 001 && cvv <= 999 && typeof cvv == 'number') {
     // console.log('cumple cvv')
     document.getElementById('cvv').classList.add('valid')
     return true
   } else {
     document.getElementById('cvv').classList.add('invalid')
+    return false
   }
 }
 
@@ -116,6 +113,7 @@ const validateName = name => {
   } 
   else {
     document.getElementById('name').classList.add('invalid')
+    return false
   }
 }
 
@@ -127,16 +125,16 @@ const validateCardDetails = form => {
   // variables para
   const tdcNumber = formArray[0].value
   console.log(tdcNumber)
-  // const expiredDate = formArray[1].value
-  // const cvv = parseInt(formArray[2].value)
-  // const name = formArray[3].value
-  
-  // funciones de 
+  const expiredDate = formArray[1].value
+  const cvv = parseInt(formArray[2].value)
+  const name = formArray[3].value
 
   // funciones de validacion
-  if (validateTdcNumber(tdcNumber) /*&& validateDate(expiredDate) && validateCvv(cvv) && validateName(name)*/) {
-    // console.log('si')
-    return true
+  if (validateTdcNumber(tdcNumber) == true && validateDate(expiredDate) == true && validateCvv(cvv) == true && validateName(name) == true) {
+    alert('Sus pago esta en proceso')
+    console.log("datos válido... enviar...");
+    // return true
+  } else {
+    console.log('try again')
   }
 }
-// validateCardDetails()
