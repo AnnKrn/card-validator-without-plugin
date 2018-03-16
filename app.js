@@ -128,8 +128,6 @@ const validateCardDetails = form => {
   const expiredDate = formArray[1].value
   const cvv = parseInt(formArray[2].value)
   const name = formArray[3].value
-  
-  // funciones de 
 
   // funciones de validacion
   if (validateTdcNumber(tdcNumber) == true && validateDate(expiredDate) == true && validateCvv(cvv) == true && validateName(name) == true) {
